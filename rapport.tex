@@ -1,0 +1,340 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Si vous voulez plus petit passez en 11pt voire encore plus petit en 10pt
+\documentclass[12pt]{report}
+
+%% Je suis francophone !
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+
+%% J'aime bien pouvoir contrôler mes hauts de page !
+\usepackage{fancyheadings}
+
+%% Je veux pouvoir inclure des figures...
+\usepackage[pdftex]{graphicx}
+
+%% ... des figures ``jpeg'' ou ``pdf'' ou "png"
+\DeclareGraphicsExtensions{.jpg,.pdf,.png}
+
+%% Je veux créer des Hyperdocuments
+\usepackage[pdftex,colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+%% Je contrôle la taille de ma zone imprimée...
+\usepackage{anysize}
+%% ...en définissants les marges {gauche}{droite}{haute}{basse}
+\marginsize{22mm}{14mm}{12mm}{25mm}
+
+%% J'inclue une bibliographie ; j'ai donc besoin du package natbib
+\usepackage{natbib}
+
+%Pour utiliser la virgule comme séparateur décimal en mode math,
+%sans que Latex introduise un espace inutile après la virgule :
+\usepackage{icomma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Je peux définir mes propres « commandes »...
+
+%% pour citer une figure :
+\newcommand{\figref}[1]{figure~\ref{#1}}
+\newcommand{\Figref}[1]{Fig.~\ref{#1}}
+
+%% pour citer une équation :
+\newcommand{\Ref}[1]{(\ref{#1})}
+
+%% pour mettre l'emphase sur un mot ou un groupe de mots :
+\newcommand{\empha}[1]{\textit{\textbf{#1}}}
+
+%% pour encadrer une équation :
+\newcommand{\encadre}[1]{\fbox{$\displaystyle{#1}$}}
+
+%% Symboles des unités SI :
+\newcommand{\m}{\textrm{m}}
+\newcommand{\s}{\textrm{s}}
+
+%% Opérateurs de dérivation :
+\newcommand{\D}{\partial}
+\newcommand{\Dt}{\partial_t}
+\newcommand{\Dx}{\partial_x}
+\newcommand{\Dy}{\partial_y}
+\newcommand{\Div}{\textrm{div}}
+
+%% Vecteurs :
+\newcommand{\Delv}{\overline{\mbox{\boldmath{$\Delta$}}}}
+
+\newcommand{\ev}{\overline{\textbf{e}}}
+\newcommand{\evr}{\ev_r}
+\newcommand{\er}{\evr}
+\newcommand{\evt}{\ev_\theta}
+\newcommand{\ethe}{\ev_\theta}
+\newcommand{\etheta}{\ev_\theta}
+\newcommand{\evz}{\ev_z}
+\newcommand{\ez}{\ev_z}
+
+\newcommand{\gv}{\overline{\textbf{g}}}
+
+\newcommand{\nv}{\overline{\textbf{n}}}
+\newcommand{\Tv}{\overline{\textbf{T}}}
+\newcommand{\vv}{\overline{\textbf{v}}}
+\newcommand{\nabv}{\overline{\mbox{\boldmath{$\nabla$}}}}
+
+%% Tenseur d'ordre 2 :
+\newcommand{\taut}{\overline{\overline{\mbox{\boldmath{$\tau$}}}}}
+\newcommand{\sigt}{\overline{\overline{\mbox{\boldmath{$\sigma$}}}}}
+\newcommand{\nabt}{\overline{\overline{\mbox{\boldmath{$\nabla$}}}}}
+
+\begin{document}
+%% Voilà des hauts de page comme je les aime :
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter. #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection. #1}}
+\lhead[]{\fancyplain{}{\bfseries\leftmark}}
+\rhead[]{\fancyplain{}{\bfseries\thepage}}
+\cfoot{}
+
+%% Voilà mes légendes de figures comme je les aime :
+\makeatletter
+\def\figurename{{\protect\sc \protect\small\bfseries Fig.}}
+\def\f@ffrench{\protect\figurename\space{\protect\small\bf \thefigure}\space}
+\let\fnum@figure\f@ffrench%
+\let\captionORI\caption
+\def\caption#1{\captionORI{\rm\small #1}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Couverture :
+\thispagestyle{empty}
+{\Large
+\begin{center}
+\vskip1cm
+
+%% Pour redéfinir la distance entre la boite et le texte
+\fboxsep6mm
+%% Pour redéfinir l'épaisseur de la boite
+\fboxrule1.3pt
+
+%% Le \vphantom{\int_\int} sert à introduire de l'espace entre les deux lignes
+%% (essayez donc de le commenter)
+$$\fbox{$
+  \begin{array}{c}
+  \textbf{Sémaphores locaux dans le Kernel}
+  \vphantom{\int_\int}
+  \\
+  \textbf{rédigé par Jérémie Sold et Fabien dont on tairera le nom}
+  \end{array}
+  $}
+$$
+\end{center}
+\vskip8cm
+
+\begin{flushright}
+Document public
+\end{flushright}
+}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Table des matières :
+\renewcommand{\baselinestretch}{1.30}\small \normalsize
+
+\tableofcontents
+
+\renewcommand{\baselinestretch}{1.18}\small \normalsize
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Introduction :
+\chapter*{Introduction\markboth{Introduction}{}}
+\addcontentsline{toc}{chapter}{Introduction}
+
+Les sémaphores locaux développés dans ce package sont destinés à blablabla
+\begin{center}
+\href{http://emmanuelplaut.perso.univ-lorraine.fr/latex}{
+\underline{http://emmanuelplaut.perso.univ-lorraine.fr/latex}
+}
+\end{center}
+\vskip12mm
+
+Vous êtes invités à le modifier sans vergogne~!
+\vskip12mm
+
+Bla
+
+bla
+
+bla
+
+bla
+\vskip3mm
+
+blabla et rebla !
+\vskip3mm
+
+Et merci à Ludovic BUHLER pour son aide !..
+
+\begin{flushright}
+Nancy, le \today.
+\vskip3mm
+
+Emmanuel PLAUT.
+\end{flushright}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chap 1 :
+\chapter{Présentation de l'entreprise}
+Je suis enseignant à l'Université de Lorraine (UL), chercheur au LEMTA.
+Mon CV résumé est disponible dans l'annexe \ref{annexe:CV}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{L'UL}
+L'\emph{Université de Lorraine} est une grande université
+comprenant dix écoles d'ingénieurs.
+Je suis plus particulièrement affecté à l'une d'entre elles, l'ENSMN.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chap 2 :
+\chapter{Présentation du travail réalisé}
+Je suis enseignant-chercheur, d'où la présentation
+qui suit de mon travail en deux sections «~enseignement~» et «~recherche~».
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Activités d'enseignements}
+J'enseigne par exemple le calcul tensoriel dans le but de faire de la mécanique
+des milieux continus...
+Par exemple pour être capable de caractériser l'état de contraintes
+d'un matériau,
+c'est-à-dire de manipuler des formules du type de celle-ci
+(définition du vecteur contrainte à partir du tenseur de Cauchy)~:
+$$\Tv~=~\sigt\cdot\nv~.
+$$
+Ou comprendre d'où viennent l'équation de conservation de la masse
+d'un fluide
+$$\frac{\D\rho}{\D t}+\Div(\rho\vv)~=~0~,
+$$
+ou celle de Navier-Stokes\footnote{
+J'estime tellement cette équation que je l'encadre...}
+\fboxsep2mm\fboxrule.9pt
+$$
+  \encadre{\rho\frac{d\vv}{dt}~=~\rho\Bigg[\frac{\D\vv}{\D t}~+~
+  \Big(\nabt_{\textbf{x}}\vv\Big)\cdot\vv\Bigg]~=~
+  \rho\gv~-~\nabv p~+~\eta\Delv\vv}~.
+$$
+Voire l'ordre de grandeur de la viscosité d'un fluide
+$$\eta~=~1,8~10^{-5}~\m/\s~,
+$$
+pour l'air dans des conditions standard.
+
+Mes activités d'enseignements consistent aussi à aider mes élèves à se mettre à \LaTeX,
+c'est pourquoi j'ai préparé ce document~!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Activités de recherche}
+Elles ont trait à la dynamique non linéaire de systèmes étendus.
+Une introduction pédagogique aux problématiques qui me motivent est présentée
+dans \cite{Manneville-91}.
+Récemment j'ai par exemple développé une reformulation
+des contraintes de Reynolds $\taut$
+engendrées par des ondes pures bidimensionnelles,
+à l'ordre non linéaire le plus bas.
+Ce travail, qui a fait l'objet d'une publication dans l'article
+\cite{Plaut-etal-08}, permet de mieux cerner les mécanismes d'instabilités
+d'écoulements cisaillés en approfondissant l'analyse de
+\cite{Pedlosky-87}, ou encore de mieux comprendre la forme des
+écoulements zonaux créés en thermoconvection tournante,
+et qui y jouent un rôle important, cf. \cite{Morin-Dormy-06}.
+En géométrie cartésienne $xy$, $x$ étant la direction de périodicité de l'onde,
+cette reformulation s'écrit
+\begin{equation}
+  \label{tau_cart}
+  \tau_{xx}~=~-2E_{cx}~,~~~\tau_{yy}~=~-2E_{cy}~,~~~
+  \tau_{xy}~=~\tau_{yy}~\tan\alpha~,
+\end{equation}
+avec
+\begin{equation}
+  E_{cx}~=~\frac{1}{2}\left<v_x^2\right>_x~,~~~
+  E_{cy}~=~\frac{1}{2}\left<v_y^2\right>_x
+\end{equation}
+les énergies cinétiques moyennes correspondant aux composantes $x$ et $y$
+du champ de vitesse de l'onde,
+$\alpha$ l'angle entre les séparatrices entre cellules de l'onde
+et la direction $y$.
+En géométrie cylindrique $r\theta$, $r$ étant le rayon cylindrique
+et $\theta$ l'angle des coordonnées cylindriques,
+qui est aussi la direction de périodicité de l'onde,
+la reformulation est très similaire à \Ref{tau_cart},
+à savoir
+\begin{equation}
+  \label{tau_cyl}
+  \tau_{rr}~=~-2E_{cr}~,~~~\tau_{\theta\theta}~=~-2E_{c\theta}~,~~~
+  \tau_{r\theta}~=~\tau_{rr}~\tan\alpha~,
+\end{equation}
+avec
+\begin{equation}
+  E_{cr}~=~\frac{1}{2}\left<v_r^2\right>_\theta~,~~~
+  E_{cy}~=~\frac{1}{2}\left<v_\theta^2\right>_\theta
+\end{equation}
+les énergies cinétiques moyennes correspondant aux composantes $r$
+et $\theta$
+du champ de vitesse de l'onde,
+$\alpha$ l'angle entre les séparatrices entre cellules de l'onde
+et la direction $r$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Conclusion :
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Conclusion}
+Je vous souhaite bonne chance dans votre apprentissage de \LaTeX...
+\clearpage
+%#####################################################
+\appendix
+\def\chaptername{Annexe}
+\chapter{CV résumé}
+\label{annexe:CV}
+À titre d'information, je donne ici mon CV résumé.
+Une version anglaise (grosso modo équivalente)
+de celui-ci figure sur le site web du Lemta
+\begin{center}
+  \href{http://www.lemta.fr}{\underline{www.lemta.fr}}~,
+\end{center}
+dans la rubrique «~annuaire~».
+\section{Formation initiale}
+\begin{itemize}
+\item[1989~:] École Polytechnique, Palaiseau, France
+\vskip2mm
+
+\item[1992~:] DEA (Master) de Physique théorique, Paris, France
+\vskip2mm
+
+\item[1996~:] Doctorat en Physique, Université d'Orsay, France
+\end{itemize}
+\vskip2mm
+
+\noindent
+Le sujet de ma thèse de doctorat, encadrée par Roland Ribotta,
+directeur de recherche au CNRS, fut
+l'\emph{Étude d'un système dynamique complexe~: thermoconvection anisotrope
+en géométrie étendue}.
+\section{Principaux éléments concernant la carrière}
+\begin{itemize}
+\item[1996-1998~:] Post-doc à l'Institut de Physique Théorique,
+Université de Bayreuth, Allemagne
+\vskip2mm
+
+\item[1998-2008~:] Maître de conférences à l'École Nationale Supérieure
+d'Électricité et de Mécanique (ENSEM), France
+\vskip2mm
+
+\item[2008-...~:] Professeur à l'ENSMN, France
+\vskip2mm
+
+\item[1998-...~:] Chercheur au Lemta
+\end{itemize}
+
+\section{Principale responsabilité}
+Responsabilité du département Énergie \& Fluides
+à Mines Nancy, en deuxième et troisième année de la formation Ingénieur Civil
+de cette école.
+Ce département compte environ 15 élèves en deuxième,
+15 élèves en troisième année.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bibliographie :
+
+%% Base de données bibliographiques : biblio.bib
+\bibliography{biblio}
+
+\addcontentsline{toc}{chapter}{Bibliographie}
+
+%% Feuille de style bibliographique : monjfm.bst
+\bibliographystyle{monjfm}
+
+\end{document}
